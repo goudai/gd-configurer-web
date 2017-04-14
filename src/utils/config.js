@@ -1,9 +1,6 @@
 module.exports = {
-  name: '蚂蚁销客',
-  prefix: 'antdAdmin',
-  footerText: '蚂蚁销客商家云 版权所有 © 2017 由米孜信息科技支持',
+  footerText: '狗带配置中心 © 2017',
   logoSrc: 'https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg',
-  logoText: '蚂蚁销客',
-  needLogin: true,
-  apiGateway: 'http://localhost:7003'
+  logoText: '配置中心',
+  apiGateway: 'http://192.168.10.110:6001'
 }

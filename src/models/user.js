@@ -1,4 +1,4 @@
-import * as usersService from '../services/userService';
+import * as usersService from '../services/configService';
 import {message} from 'antd'
 
 export default {

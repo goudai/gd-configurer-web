@@ -5,7 +5,7 @@ import {stringify} from "qs";
  *
  * @returns {Promise.<[]>} 应用列表
  */
-export function appConfigList(appName) {
+export function list(appName) {
     return register(`/apps/${appName}`, {
         method: 'GET',
         headers: {
