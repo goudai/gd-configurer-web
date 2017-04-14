@@ -11,7 +11,7 @@ function Menus({location, mode, className, dispatch}) {
     <Menu
       className={className}
       mode={mode}
-      theme="light"
+      theme="dark"
       defaultSelectedKeys={defaultSelectedKeys}>
       {
         menu.map(item => {
