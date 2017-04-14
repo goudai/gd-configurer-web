@@ -15,7 +15,7 @@ app.use({
 
     if (e.message == 401) {
       app._store.dispatch({
-        type: 'app/redirectToLogin',
+        type: 'login/redirectToLogin',
         payload: app._store.getState().routing.locationBeforeTransitions
       })
     } else {
@@ -28,8 +28,8 @@ app.use({
 app.use(createLoading());
 
 // 3. Model
-app.model(require('./models/app'));
-app.model(require('./models/user'));
+app.model(require('./models/login'));
+app.model(require('./models/config'));
 app.model(require('./models/dashboard'));
 
 // 4. Router

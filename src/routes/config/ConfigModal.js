@@ -4,30 +4,37 @@ const Option = Select.Option
 
 const FormItem = Form.Item;
 
-function UserModifyUserRankModal({dispatch, visible, user = {}, form, loading}) {
+function UserModifyUserRankModal({dispatch, visible, record = {}, viewType, form, loading}) {
 
 	const {validateFields, getFieldDecorator} = form
 
 	const okHandler = () => {
     validateFields((err, values) => {
       if (!err) {
-        dispatch({
-          type: 'user/modifyUserRank',
-          payload: {...values, id: user.id}
-        })
+        if (viewType === 'modify') {
+          dispatch({
+            type: 'config/modify',
+            payload: {...values, id: record.id}
+          })
+        } else { // create
+          dispatch({
+            type: 'config/create',
+            payload: {...values}
+          })
+        }
       }
     })
   }
 
   const cancelHandler = () => {
     dispatch({
-      type: 'user/hideModal'
+      type: 'config/hideModal'
     })
   }
 
 	return (
 		<Modal
-			title="用户编辑"
+			title="配置编辑"
 			visible={visible}
 			onOk={okHandler}
 			onCancel={cancelHandler}
@@ -64,10 +71,10 @@ function UserModifyUserRankModal({dispatch, visible, user = {}, form, loading}) 
 
 export default Form.create({
 
-  mapPropsToFields({user = {}}) {
+  mapPropsToFields({record = {}}) {
     return {
       nickname: {
-        value: user.nickname
+        value: record.nickname
       },
       userRank: {
       	value: user.userRank

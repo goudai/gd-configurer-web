@@ -1,49 +1,31 @@
-import React from 'react'
-import { Menu, Icon } from 'antd'
-import { Link } from 'dva/router'
-import { menu } from '../../utils'
+import React from "react";
+import {Menu, Icon} from "antd";
+import {Link} from "dva/router";
+import {menu} from "../../utils";
 
-const topMenus = menu.map(item => item.key)
-const getMenus = function (menuArray, isSiderFolded, parentPath) {
-  parentPath = parentPath || '/'
-  return menuArray.map(item => {
-    if (item.child) {
-      return (
-        <Menu.SubMenu key={item.key} title={<span>{item.icon && <Icon type={item.icon} />}{isSiderFolded && topMenus.indexOf(item.key) >= 0 ? '' : item.name}</span>}>
-          {getMenus(item.child, isSiderFolded, parentPath + item.key + '/')}
-        </Menu.SubMenu>
-      )
-    } else {
-      return (
-        <Menu.Item key={item.key}>
-          <Link to={item.key}>
-            {item.icon ? <Icon type={item.icon} /> : ''}
-            {isSiderFolded && topMenus.indexOf(item.key) >= 0 ? '' : item.name}
-          </Link>
-        </Menu.Item>
-      )
-    }
-  })
-}
+function Menus({location, mode, className, dispatch}) {
 
-function Menus ({ isSiderFolded, isDarkTheme, location, isMobile, className, dispatch }) {
-  const menuItems = getMenus(menu, isSiderFolded)
-
-  const handlePopoverSwitch =  () => {
-    if(isMobile) {
-      dispatch({type: 'app/switchMenuPopover'})
-    }
-  }
+  let defaultSelectedKeys = [location.pathname.split('/')[location.pathname.split('/').length - 1] || 'dashboard']
 
   return (
     <Menu
       className={className}
-      mode={isSiderFolded ? 'vertical' : 'inline'}
-      theme={isDarkTheme ? 'dark' : 'light'}
-      onClick={handlePopoverSwitch}
-      defaultOpenKeys={isMobile ? menuItems.map(item => item.key) : []}
-      defaultSelectedKeys={[location.pathname.split('/')[location.pathname.split('/').length - 1] || 'dashboard']}>
-      {menuItems}
+      mode={mode}
+      theme="light"
+      defaultSelectedKeys={defaultSelectedKeys}>
+      {
+        menu.map(item => {
+          return (
+            <Menu.Item key={item.key}>
+              <Link to={item.key}>
+                <Icon type={item.icon}/>
+                <span className="nav-text">{item.name}</span>
+              </Link>
+            </Menu.Item>
+          )
+
+        })
+      }
     </Menu>
   )
 }

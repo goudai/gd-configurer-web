@@ -1,0 +1,39 @@
+.root {
+  height: 100%;
+}
+
+.sider {
+  height: 100%;
+}
+
+.logo {
+  height: 48px;
+  background: rgba(1, 1, 1, 0.05);
+}
+
+.logo img {
+  height: 30px;
+  width: 30px;;
+}
+
+.logo span {
+  color: white;
+}
+
+.header {
+  background: #fff;
+  padding: 0 16px;
+}
+
+.menu {
+
+}
+
+.content {
+  background: #fff;
+  padding: 20px;
+}
+
+.footer {
+  text-align: center;
+}
