@@ -6,7 +6,7 @@ import {stringify} from "qs";
  * @returns {Promise.<[]>} 应用列表
  */
 export function appConfigList(appName) {
-    return register(`/apps/${appName}`, {
+    return register(`/configs/${appName}`, {
         method: 'GET',
         headers: {
             'Authorization': localStorage.getItem('token')
@@ -19,7 +19,7 @@ export function appConfigList(appName) {
  * @returns {}
  */
 export function create(appName, key, value) {
-    return request('/apps', {
+    return request('/configs', {
         method: 'post',
         mode: 'cors',
         headers: {
@@ -35,7 +35,7 @@ export function create(appName, key, value) {
  * @returns {*}
  */
 export function remove(appName,key) {
-    return request('/apps', {
+    return request('/configs', {
         method: 'delete',
         mode: 'cors',
         headers: {
@@ -53,7 +53,7 @@ export function remove(appName,key) {
  * @returns {*}
  */
 export function modify(appName, key,value) {
-    return request('/apps', {
+    return request('/configs', {
         method: 'PUT',
         mode: 'cors',
         headers: {
