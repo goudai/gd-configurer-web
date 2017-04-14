@@ -5,8 +5,8 @@ import {stringify} from "qs";
  *
  * @returns {Promise.<[]>} 应用列表
  */
-export function appConfigList(appName) {
-    return register(`/configs/${appName}`, {
+export function list(appName) {
+    return request(`/configs/${appName}`, {
         method: 'GET',
         headers: {
             'Authorization': localStorage.getItem('token')
