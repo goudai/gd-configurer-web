@@ -1,4 +1,4 @@
-import * as appService from '../services/AuthenticationService'
+import * as appService from '../services/authenticationService'
 import {routerRedux} from 'dva/router';
 
 export default {
