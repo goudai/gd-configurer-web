@@ -1,7 +1,6 @@
 import React from "react";
-import {Table, Row, Col, Icon, Modal} from "antd";
+import {Row, Col, Icon, Modal} from "antd";
 import styles from "./IconPicker.css";
-const Column = Table.Column
 
 const iconTypes = [
   'paper-clip',
@@ -18,7 +17,6 @@ const iconTypes = [
   'safety',
   'wallet',
   'check-circle-o'
-
 ]
 
 class IconPicker extends React.Component {
@@ -28,8 +26,6 @@ class IconPicker extends React.Component {
     this.state = {
       showPickerModal: false
     }
-    this.pickHandler = this.pickHandler.bind(this)
-    this.cancelHandler = this.cancelHandler.bind(this)
   }
 
   changeHandler = record => {
@@ -53,7 +49,7 @@ class IconPicker extends React.Component {
         <Modal visible={this.state.showPickerModal} footer={null} title="请为您的应用选择一个Icon" onCancel={this.cancelHandler}>
           <Row gutter={16}>
             {iconTypes.map(record =>
-              <Col className={styles.content} md={6} lg={4} onClick={this.changeHandler.bind(this, record)}>
+              <Col className={styles.content} md={6} lg={4} onClick={() => this.changeHandler(record)}>
                 <div className={styles.icon}>
                   <Icon type={record}/>
                 </div>
