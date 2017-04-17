@@ -2,8 +2,12 @@
   height: 100%;
 }
 
-.sider {
+.layout {
   height: 100%;
+}
+
+.sider {
+
 }
 
 .logo {
@@ -22,18 +26,29 @@
 
 .header {
   background: #fff;
-  padding: 0 16px;
-}
-
-.menu {
-
+  height: 48px;
+  padding: 0 32px;
 }
 
 .content {
+  background: #eee;
+  padding: 16px;
+}
+
+.inner {
   background: #fff;
-  padding: 20px;
+  padding: 16px;
 }
 
 .footer {
   text-align: center;
+}
+
+:global .ant-layout-sider-collapsed .anticon {
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+:global .ant-layout-sider-collapsed .nav-text {
+  display: none;
 }

@@ -7,28 +7,26 @@ import {stringify} from "qs";
  * @param password
  * @returns {token}
  */
-export async function login(username,password) {
-    let token = await register('/',{
-        method: 'post',
-        mode: 'cors',
-        headers: {
-            'content-type': 'application/x-www-form-urlencoded'
-        },
-        body: stringify({username: username, password: password})
-    })
-    localStorage.setItem('token',token)
-    return token
+export function login({username, password}) {
+  return request('/', {
+    method: 'post',
+    mode: 'cors',
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    body: stringify({username, password})
+  })
 }
 
 export function register(username, password, securityCode) {
-    return request('/sessions', {
-        method: 'post',
-        mode: 'cors',
-        headers: {
-            'content-type': 'application/x-www-form-urlencoded'
-        },
-        body: stringify({username: username, password: password, security_code: securityCode})
-    })
+  return request('/sessions', {
+    method: 'post',
+    mode: 'cors',
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    body: stringify({username: username, password: password, security_code: securityCode})
+  })
 }
 
 

@@ -20,7 +20,12 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default async function request(url, options) {
-  const response = await fetch(config.apiGateway + url, {...options, credentials: 'include'});
+  const response = await fetch(
+    config.apiGateway + url,
+    {
+      ...options
+    }
+  );
   checkStatus(response);
   const result = await response.json();
   if (result.code === 401) {

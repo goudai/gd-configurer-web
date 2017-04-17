@@ -1,0 +1,26 @@
+.card :global .anticon {
+  height: 48px;
+  width: 48px;
+  font-size: 48px;
+}
+
+.card {
+  height: 160px;
+  margin-top: 16px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card span {
+  margin-top: 16px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.icon {
+  text-align: center;
+}

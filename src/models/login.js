@@ -1,14 +1,9 @@
-import * as appService from '../services/authenticationService'
-import {routerRedux} from 'dva/router';
+import * as authenticationService from "../services/authenticationService";
+import {routerRedux} from "dva/router";
 
 export default {
   namespace: 'login',
-  state: {
-    login: false,
-    loading: false,
-    loginButtonLoading: false,
-    isPopoverMenuVisible: false,
-  },
+  state: {},
   reducers: {
     setRedirection(state, action) {
       return {
@@ -16,53 +11,14 @@ export default {
         redirection: action.payload
       }
     },
-    loginSuccess(state, action) {
+    setPrincipal(state, action) {
       return {
         ...state,
-        user: action.payload,
-        login: true,
-        loginButtonLoading: false,
-        loading: false
       }
     },
-    loginFailure(state, action) {
-      return {
-        ...state,
-        login: false,
-        loginMessage: action.payload,
-        loginButtonLoading: false
-      }
+    deletePrincipal(state) {
+      return {}
     },
-    logoutSuccess(state) {
-      return {
-        ...state,
-        login: false
-      }
-    },
-    showLoginButtonLoading(state) {
-      return {
-        ...state,
-        loginButtonLoading: true
-      }
-    },
-    showLoading(state) {
-      return {
-        ...state,
-        loading: true
-      }
-    },
-    hideLoading(state) {
-      return {
-        ...state,
-        loading: false
-      }
-    },
-    setShiro(state, {payload}) {
-      return {
-        ...state,
-        shiro: payload
-      }
-    }
   },
   effects: {
     *redirectToLogin({payload}, {call, put}) {
@@ -76,16 +32,14 @@ export default {
       }))
     },
     *login({payload}, {call, put, select}) {
-      yield put({type: 'showLoginButtonLoading'})
-      const result = yield call(appService.login, payload)
-      if (result.code === 0) {
+      const result = yield call(authenticationService.login, payload)
+      if (result.code === 200) {
         yield put({
-          type: 'loginSuccess',
+          type: 'setPrincipal',
           payload: result.data
         })
-
-        const redirection = yield select(state => state.app.redirection)
-
+        localStorage.setItem('token', result.data.token)
+        const redirection = yield select(state => state.login.redirection)
         yield put(routerRedux.push({
           ...redirection
         }))
@@ -96,28 +50,11 @@ export default {
         })
       }
     },
-    *getCurrentUser({}, {call, put}) {
-      yield put({type: 'showLoading'})
-      const result = yield call(appService.getCurrentUser)
-      if (result.data) {
-        yield put({
-          type: 'loginSuccess',
-          payload: result.data
-        })
-      } else {
-        yield put({type: 'hideLoading'})
-        yield put(routerRedux.push({
-          pathname: '/login'
-        }))
-      }
-    },
     *logout({}, {call, put}) {
-      const result = yield call(appService.logout)
-      if (result.code === 0) {
-        yield put(routerRedux.push({
-          pathname: '/login'
-        }))
-      }
+      localStorage.removeItem('token')
+      yield put(routerRedux.push({
+        pathname: '/login'
+      }))
     }
   },
   subscriptions: {

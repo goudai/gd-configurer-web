@@ -1,8 +1,13 @@
 module.exports = [
   {
     key: 'dashboard',
-    name: '首页',
+    name: '仪表盘',
     icon: 'laptop'
+  },
+  {
+    key: 'app',
+    name: '应用管理',
+    icon: 'appstore-o',
   },
   {
     key: 'config',
