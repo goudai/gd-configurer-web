@@ -32,7 +32,7 @@ function AppList({dispatch, viewType = 'list', list, loading, record}) {
       <Row gutter={16}>
         {
           list.map(record =>
-            <Col key={record.name} span={4}>
+            <Col key={record.name} md={6} lg={4}>
               <Card className={styles.card} onClick={modifyHandler.bind(null, record)}>
                 <div className={styles.content}>
                   <div className={styles.icon}><Icon type="home"/></div>
@@ -42,7 +42,7 @@ function AppList({dispatch, viewType = 'list', list, loading, record}) {
             </Col>
           )
         }
-        <Col span={4}>
+        <Col md={6} lg={4}>
           <Card className={styles.card} onClick={createHandler}>
             <div className={styles.content}>
               <div className={styles.icon}><Icon type="plus"/></div>

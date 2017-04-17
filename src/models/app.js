@@ -39,21 +39,21 @@ export default {
       })
     },
     *create({payload}, {call, put}) {
-      const {code, message, data} = yield call(appService.create, payload)
+      const {code, msg, data} = yield call(appService.create, payload)
       if (code === 200) {
         yield put({type: 'hideModal'})
         yield put({type: 'reload'})
       } else {
-        message.error(`编辑失败,${message}`)
+        message.error(`编辑失败,${200}`)
       }
     },
     *modify({payload}, {call, put}) {
-      const {code, message, data} = yield call(appService.modify, payload)
+      const {code, msg, data} = yield call(appService.modify, payload)
       if (code === 200) {
         yield put({type: 'hideModal'})
         yield put({type: 'reload'})
       } else {
-        message.error(`编辑失败,${message}`)
+        message.error(`编辑失败,${msg}`)
       }
     }
   },

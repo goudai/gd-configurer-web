@@ -88,14 +88,14 @@ class Dashboard extends React.Component {
         <Row style={{marginTop: 16}}>
           <Col span={24}>
             <Card title={<span><Icon type="line-chart"/> 注册人数</span>}>
-              <ReactEcharts
+              {/*<ReactEcharts
                 option={userChartOption}
                 onChartReady={() => {
                   dispatch({
                     type: 'dashboard/userChart'
                   })
                 }}
-              />
+              />*/}
             </Card>
           </Col>
         </Row>
