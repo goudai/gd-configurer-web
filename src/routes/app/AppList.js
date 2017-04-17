@@ -33,10 +33,17 @@ function AppList({dispatch, viewType = 'list', list, loading, record}) {
         {
           list.map(record =>
             <Col key={record.name} md={6} lg={4}>
-              <Card className={styles.card} onClick={modifyHandler.bind(null, record)}>
+              <Card
+                className={styles.card}
+
+              >
                 <div className={styles.content}>
                   <div className={styles.icon}><Icon type="home"/></div>
-                  <span>{record.name}</span>
+                  <span className={styles.text}>{record.name}</span>
+                  <Row gutter={16} className={styles.action}>
+                    <Icon type="eye-o" onClick={() => alert('查看')}/>
+                    <Icon type="edit" onClick={modifyHandler.bind(null, record)}/>
+                    <Icon type="delete" onClick={() => alert('删除')}/></Row>
                 </div>
               </Card>
             </Col>
@@ -46,7 +53,7 @@ function AppList({dispatch, viewType = 'list', list, loading, record}) {
           <Card className={styles.card} onClick={createHandler}>
             <div className={styles.content}>
               <div className={styles.icon}><Icon type="plus"/></div>
-              <span>新增</span>
+              <span className={styles.text}>新增</span>
             </div>
           </Card>
         </Col>

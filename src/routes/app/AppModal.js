@@ -1,5 +1,6 @@
 import React from "react";
 import {Modal, Form, Input, Select} from "antd";
+import IconPicker from "../../components/IconPicker";
 const Option = Select.Option
 
 const FormItem = Form.Item;
@@ -49,6 +50,14 @@ function AppModal({dispatch, visible, record = {}, viewType, form, loading}) {
             ]
           })(<Input />)}
         </FormItem>
+
+        <FormItem label="Icon">
+          {getFieldDecorator('icon', {
+            rules: [
+              {required:true, message: '请选择一个Icon'}
+            ]
+          })(<IconPicker />)}
+        </FormItem>
       </Form>
     </Modal>
   )
@@ -61,6 +70,9 @@ export default Form.create({
     return {
       name: {
         value: record.name
+      },
+      icon: {
+        value: record.icon
       }
     };
   }
